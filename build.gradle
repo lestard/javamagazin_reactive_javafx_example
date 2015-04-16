@@ -20,6 +20,7 @@ dependencies {
 
     compile "org.reactfx:reactfx:1.4.1"
 	compile "eu.lestard:advanced-bindings:0.4.0-SNAPSHOT"
+    compile "io.reactivex:rxjava:1.0.9"
 
     // testing
     testCompile "junit:junit:4.11"
