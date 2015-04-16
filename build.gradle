@@ -1,0 +1,28 @@
+apply plugin: "java"
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven{
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+
+    compile "org.reactfx:reactfx:1.4.1"
+	compile "eu.lestard:advanced-bindings:0.4.0-SNAPSHOT"
+
+    // testing
+    testCompile "junit:junit:4.11"
+    testCompile "org.assertj:assertj-core:1.6.0"
+}
+
