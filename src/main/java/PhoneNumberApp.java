@@ -2,10 +2,12 @@ import eu.lestard.advanced_bindings.api.StringBindings;
 import eu.lestard.advanced_bindings.api.SwitchBindings;
 import javafx.application.Application;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -23,8 +25,13 @@ public class PhoneNumberApp extends Application {
         VBox root = new VBox();
 
 
-        StringProperty language = new SimpleStringProperty("DE");
+        ChoiceBox<String> languagesChoiceBox = new ChoiceBox<>();
+        languagesChoiceBox.setItems(FXCollections.observableArrayList("DE", "US", "other"));
+        languagesChoiceBox.getSelectionModel().select("DE");
 
+
+
+        ObjectProperty<String> language = languagesChoiceBox.valueProperty();
 
         final ObservableValue<String> phonePattern =
                 SwitchBindings.switchBinding(language, String.class)
@@ -45,7 +52,10 @@ public class PhoneNumberApp extends Application {
 
 
 
-        root.getChildren().addAll(phoneNumberInput, errorMessage);
+
+        root.setSpacing(10);
+        root.setPadding(new Insets(15));
+        root.getChildren().addAll(languagesChoiceBox, phoneNumberInput, errorMessage);
 
         stage.setScene(new Scene(root));
         stage.show();

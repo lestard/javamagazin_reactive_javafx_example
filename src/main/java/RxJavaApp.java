@@ -25,9 +25,6 @@ public class RxJavaApp extends Application {
 
 
 
-        Observable.create(subscriber -> subscriber.onNext())
-
-
         final Observable<Long> ascendingNumbers = Observable.interval(1, TimeUnit.SECONDS);
         final Observable<Integer> temperature = temperatureService();
 
