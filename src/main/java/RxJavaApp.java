@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -37,7 +38,7 @@ public class RxJavaApp extends Application {
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         lineChart.getData().add(series);
 
-        dataObservable.subscribe(data -> series.getData().add(data));
+        dataObservable.subscribe(data -> Platform.runLater(()-> series.getData().add(data)));
 
 
 
